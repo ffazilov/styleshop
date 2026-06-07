@@ -7,14 +7,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Config from environment variables
-const BOT_TOKEN = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN_HERE';
-const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID || 'YOUR_CHAT_ID_HERE';
+const BOT_TOKEN = process.env.BOT_TOKEN || '8669908105:AAH-z2qyZopnbn4eR-NN7_QvKmhVasMe9MY';
+const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID || '991756404';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/admin', express.static('admin'));
+
+// data papkasini avtomatik yaratish
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
 
 // Data storage (JSON files)
 const PRODUCTS_FILE = path.join(__dirname, 'data', 'products.json');
